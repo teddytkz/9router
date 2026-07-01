@@ -132,21 +132,17 @@ function UsageContent() {
             <p className="text-text-muted">
               Select how far back you want to delete usage data. This action cannot be undone.
             </p>
-            <div className="flex flex-wrap gap-1.5">
+            <select
+              value={resetPeriod}
+              onChange={(e) => setResetPeriod(e.target.value)}
+              className="w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm text-text-main focus:outline-none focus:ring-2 focus:ring-red-500/40"
+            >
               {RESET_PERIODS.map((rp) => (
-                <button
-                  key={rp.value}
-                  onClick={() => setResetPeriod(rp.value)}
-                  className={`px-3 py-1.5 text-sm rounded-lg border transition-all cursor-pointer ${
-                    resetPeriod === rp.value
-                      ? "border-red-500 bg-red-500/10 text-red-500 font-semibold"
-                      : "border-border text-text-muted hover:border-red-500/40 hover:text-text-main"
-                  }`}
-                >
+                <option key={rp.value} value={rp.value}>
                   {rp.label}
-                </button>
+                </option>
               ))}
-            </div>
+            </select>
           </div>
         }
         confirmText={resetting ? "Resetting..." : "Reset"}
